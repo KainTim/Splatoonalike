@@ -14,7 +14,7 @@ public abstract class Weapon : MonoBehaviour
   public int minSecondaryFireAmmoCount;
   public Transform MuzzleFlashPoint;
   public float ProjectileSpeed = 30f;
-  public Camera cam
+  public Camera cam;
 
   abstract public void PrimaryFire();
 
