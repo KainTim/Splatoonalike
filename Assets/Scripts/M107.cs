@@ -6,7 +6,7 @@ public class M107 : Weapon
 {
   public override void PrimaryFire()
   {
-    Debug.Log("Primary Fire of M107");
+    RegularPrimaryFire();
   }
 
   public override void SecondaryFire()

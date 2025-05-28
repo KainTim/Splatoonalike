@@ -102,14 +102,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49195284e96ef3043b59bbb9e6f8a671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Ammo: {fileID: 3415212825969718948, guid: fcd13d81345ae044aa6d7baacbf15749, type: 3}
+  Name: M4
   Damage: 4
   MaxAmmoCount: 100
   CurrentAmmo: 100
-  minPrimaryFireAmmoCount: 1
-  minSecondaryFireAmmoCount: 2
+  MinPrimaryFireAmmoCount: 1
+  MinSecondaryFireAmmoCount: 2
   MuzzleFlashPoint: {fileID: 3614919168776282001}
-  Ammo: {fileID: 3415212825969718948, guid: fcd13d81345ae044aa6d7baacbf15749, type: 3}
+  ProjectileSpeed: 30
+  Camera: {fileID: 0}
 --- !u!1 &1326079549577358
 GameObject:
   m_ObjectHideFlags: 0

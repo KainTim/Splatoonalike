@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Bennelli_M4 : Weapon
+public class BennelliM4 : Weapon
 {
   public override void PrimaryFire()
   {
-
+    RegularPrimaryFire();
   }
 
   public override void SecondaryFire()

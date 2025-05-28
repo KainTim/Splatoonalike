@@ -277,6 +277,7 @@ namespace KinematicCharacterController.Examples
       }
 
       _selectedWeaponInstance = Instantiate(selectedWeapon);
+      selectedWeapon.Camera = Camera.main;
       var weaponTransform = _selectedWeaponInstance.transform;
       weaponTransform.SetParent(WeaponAttachPoint);
       weaponTransform.localPosition = Vector3.zero;
@@ -557,7 +558,7 @@ namespace KinematicCharacterController.Examples
 
             if (_isPrimaryFiring)
             {
-              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.minPrimaryFireAmmoCount > 0)
+              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.MinPrimaryFireAmmoCount > 0)
               {
                 _isPrimaryFiring = true;
                 _selectedWeaponInstance.PrimaryFire();
@@ -571,7 +572,7 @@ namespace KinematicCharacterController.Examples
 
             if (_isSecondaryFiring)
             {
-              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.minSecondaryFireAmmoCount > 0)
+              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.MinSecondaryFireAmmoCount > 0)
               {
                 _isSecondaryFiring = true;
                 _selectedWeaponInstance.SecondaryFire();
