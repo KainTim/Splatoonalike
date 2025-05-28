@@ -110,8 +110,10 @@ MonoBehaviour:
   MinPrimaryFireAmmoCount: 1
   MinSecondaryFireAmmoCount: 2
   MuzzleFlashPoint: {fileID: 3614919168776282001}
-  ProjectileSpeed: 30
+  ProjectileSpeed: 60
   Camera: {fileID: 0}
+  PrimaryFireDelay: 0.15
+  SecondaryFireDelay: 0.8
 --- !u!1 &1326079549577358
 GameObject:
   m_ObjectHideFlags: 0

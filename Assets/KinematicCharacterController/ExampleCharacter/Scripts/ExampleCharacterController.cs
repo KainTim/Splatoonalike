@@ -94,8 +94,6 @@ namespace KinematicCharacterController.Examples
     private bool _shouldBeCrouching = false;
     private bool _shouldBePrimaryFiring;
     private bool _shouldBeSecondaryFiring;
-    private bool _isPrimaryFiring;
-    private bool _isSecondaryFiring;
     private bool _isCrouching = false;
 
     private Vector3 lastInnerNormal = Vector3.zero;
@@ -239,25 +237,17 @@ namespace KinematicCharacterController.Examples
             if (inputs.Fire1Down)
             {
               _shouldBePrimaryFiring = true;
-              if (!_isPrimaryFiring)
-              {
-                _isPrimaryFiring = true;
-              }
             }
             else if (inputs.Fire1Up)
             {
-              _shouldBeCrouching = false;
+              _shouldBePrimaryFiring = false;
             }
 
             if (inputs.Fire2Down)
             {
               _shouldBeSecondaryFiring = true;
-              if (!_isSecondaryFiring)
-              {
-                selectedWeaponIndex++;
-                OnWeaponChanged();
-                _isSecondaryFiring = true;
-              }
+              selectedWeaponIndex++;
+              OnWeaponChanged();
             }
             else if (inputs.Fire2Up)
             {
@@ -555,33 +545,18 @@ namespace KinematicCharacterController.Examples
             }
 
             #region firing
-
-            if (_isPrimaryFiring)
+            
+            if (_shouldBePrimaryFiring && _selectedWeaponInstance is not null)
             {
-              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.MinPrimaryFireAmmoCount > 0)
-              {
-                _isPrimaryFiring = true;
-                _selectedWeaponInstance.PrimaryFire();
-              }
+              // The Weapon's PrimaryFire method will now handle its own cooldown and ammo check
+              _selectedWeaponInstance.PrimaryFire();
             }
 
-            if (_isPrimaryFiring && !_shouldBeCrouching)
+            // Only attempt to fire if the input is down AND we have a weapon instance
+            if (_shouldBeSecondaryFiring && _selectedWeaponInstance is not null)
             {
-              _isPrimaryFiring = false;
-            }
-
-            if (_isSecondaryFiring)
-            {
-              if (_selectedWeaponInstance.CurrentAmmo - _selectedWeaponInstance.MinSecondaryFireAmmoCount > 0)
-              {
-                _isSecondaryFiring = true;
-                _selectedWeaponInstance.SecondaryFire();
-              }
-            }
-
-            if (_isSecondaryFiring && !_shouldBeCrouching)
-            {
-              _isSecondaryFiring = false;
+              // The Weapon's SecondaryFire method will now handle its own cooldown and ammo check
+              _selectedWeaponInstance.SecondaryFire();
             }
 
             #endregion

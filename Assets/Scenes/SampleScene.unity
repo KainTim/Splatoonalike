@@ -518,10 +518,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4812569245800180876, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
-      propertyPath: ObstructionLayers.m_Bits
-      value: 919
-      objectReference: {fileID: 0}
     - target: {fileID: 5012525245765383351, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8
@@ -560,18 +556,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5012525245765383351, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549773612012387039, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549773612012387039, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549773612012387039, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
