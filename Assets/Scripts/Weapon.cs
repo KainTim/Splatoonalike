@@ -35,6 +35,7 @@ public abstract class Weapon : MonoBehaviour
     MuzzleFlashPoint.transform.parent = parent;
     
     var component = firedAmmo.GetComponent<Rigidbody>();
+    Camera ??= Camera.main!;
     var shootDirection = Camera.transform.forward.normalized + new Vector3(0, 0.1f, 0);
     component.linearVelocity = shootDirection * ProjectileSpeed;
   }
