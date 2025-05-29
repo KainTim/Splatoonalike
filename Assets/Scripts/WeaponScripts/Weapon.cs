@@ -1,3 +1,4 @@
+using System;
 using KinematicCharacterController.Examples;
 using UnityEngine;
 
@@ -51,12 +52,14 @@ namespace WeaponScripts
       
       //Trail
       var upwardsVector = new Vector3(0, 0.3f, 0);
-      for (int i = 1; i <= TrailCount; i++)
+      for (int i = 1; i <= TrailCount*2; i+=2)
       {
         var firedAmmo = Instantiate(Ammo, worldPos, worldRot);
         var component = firedAmmo.GetComponent<Rigidbody>();
         var shootDirection = Camera.transform.forward.normalized + upwardsVector;
-        component.linearVelocity = shootDirection * (ProjectileSpeed / (i * 0.7f));
+        var speed = shootDirection * ((ProjectileSpeed /( ((i / 2) *0.5f) + 1)) * 1.3f);
+        Debug.Log($"{speed}: {i}");
+        component.linearVelocity = speed;
       }
       //Reparent
       MuzzleFlashPoint.transform.parent = parent;

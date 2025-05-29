@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 2981348431587536975}
   - component: {fileID: 1805689311874098750}
   - component: {fileID: 3544396672195809640}
+  - component: {fileID: -9184275623419888280}
   m_Layer: 6
   m_Name: Splotch
   m_TagString: Untagged
@@ -201,7 +202,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6572330477760052336}
@@ -271,7 +272,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a55d25216a74342be4f7c87033771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 8
+  gravityScale: 20
+--- !u!114 &-9184275623419888280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415212825969718948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0bd277269abea668e1cc00ae87dc33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyDelay: 60
 --- !u!1 &8295378532675549195
 GameObject:
   m_ObjectHideFlags: 0

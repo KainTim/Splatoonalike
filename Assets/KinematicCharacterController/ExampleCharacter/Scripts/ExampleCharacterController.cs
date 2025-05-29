@@ -589,6 +589,7 @@ namespace KinematicCharacterController.Examples
           else
           {
             CurrentAmmo += RechargeRate * Time.deltaTime;
+            CurrentAmmo = Math.Min(CurrentAmmo,MaxAmmo);
           }
 
           #endregion
