@@ -109,8 +109,8 @@ MonoBehaviour:
   StableMovementSharpness: 15
   OrientationSharpness: 10
   OrientationMethod: 1
-  MaxAirMoveSpeed: 15
-  AirAccelerationSpeed: 18
+  MaxAirMoveSpeed: 10
+  AirAccelerationSpeed: 10
   Drag: 0.1
   AllowJumpingWhenSliding: 0
   JumpUpSpeed: 10
@@ -133,7 +133,7 @@ MonoBehaviour:
   - {fileID: -5238642371803108203, guid: 221db04445c4eccfd81f54eed095dab1, type: 3}
   MaxAmmo: 100
   CurrentAmmo: 0
-  InInkRechargeRate: 10
+  InInkRechargeRate: 20
   OutInkRechargeRate: 2
   GroundCheckOrigin: {fileID: 2253864852079759479}
   CheckRadius: 0.5
