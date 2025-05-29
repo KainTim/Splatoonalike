@@ -103,6 +103,7 @@ namespace KinematicCharacterController.Examples
     public Transform WeaponAttachPoint;
     public List<Weapon> Weapons;
     private int selectedWeaponIndex = 0;
+    private Camera _camera;
 
     private Weapon selectedWeapon
     {
@@ -131,6 +132,7 @@ namespace KinematicCharacterController.Examples
 
       // Assign the characterController to the motor
       Motor.CharacterController = this;
+      _camera = Camera.main;
     }
 
     /// <summary>
@@ -267,7 +269,7 @@ namespace KinematicCharacterController.Examples
       }
 
       _selectedWeaponInstance = Instantiate(selectedWeapon);
-      selectedWeapon.Camera = Camera.main;
+      selectedWeapon.Camera = _camera;
       var weaponTransform = _selectedWeaponInstance.transform;
       weaponTransform.SetParent(WeaponAttachPoint);
       weaponTransform.localPosition = Vector3.zero;
