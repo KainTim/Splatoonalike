@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,8 +24,8 @@ public abstract class Weapon : MonoBehaviour
   private void Awake()
   {
     Camera = Camera.main!;
-    _nextPrimaryFireTime = Time.time;
-    _nextSecondaryFireTime = Time.time;
+    _nextPrimaryFireTime = Time.time + PrimaryFireDelay;
+    _nextSecondaryFireTime = Time.time + SecondaryFireDelay;
   }
 
   public abstract void PrimaryFire();
@@ -40,24 +39,23 @@ public abstract class Weapon : MonoBehaviour
       return;
     }
     _nextPrimaryFireTime = Time.time + PrimaryFireDelay;
-    
+
     var parent = MuzzleFlashPoint.transform.parent;
 
     var worldPos = MuzzleFlashPoint.transform.position;
     var worldRot = MuzzleFlashPoint.transform.rotation;
 
     MuzzleFlashPoint.transform.parent = null;
-    
+
     var upwardsVector = new Vector3(0, 0.3f, 0);
     for (int i = 1; i <= 3; i++)
     {
-      var firedAmmo = Instantiate(Ammo,worldPos, worldRot);
+      var firedAmmo = Instantiate(Ammo, worldPos, worldRot);
       var component = firedAmmo.GetComponent<Rigidbody>();
       var shootDirection = Camera.transform.forward.normalized + upwardsVector;
-      component.linearVelocity = shootDirection * (ProjectileSpeed/(i*0.7f));
+      component.linearVelocity = shootDirection * (ProjectileSpeed / (i * 0.7f));
     }
 
     MuzzleFlashPoint.transform.parent = parent;
   }
 }
-
