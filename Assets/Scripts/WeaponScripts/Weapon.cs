@@ -63,13 +63,12 @@ namespace WeaponScripts
         var speed = shootDirection * ((ProjectileSpeed /( ((i / 2) *0.5f) + 1)) * 1.3f);
         if (i > 1)
         {
-          speed *= (Random.value + 0.5f);
+          speed *= ((Random.value + 2f)/2);
         }
         if (i>TrailCount*2-2)
         {
           speed = Vector3.zero;
         }
-        Debug.Log(_characterMotor.Velocity);
         component.linearVelocity = speed + _characterMotor.Velocity*1.2f;
       }
       //Reparent

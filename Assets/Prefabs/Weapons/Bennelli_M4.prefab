@@ -108,10 +108,10 @@ MonoBehaviour:
   MinPrimaryFireAmmo: 2
   MinSecondaryFireAmmo: 6
   MuzzleFlashPoint: {fileID: 3614919168776282001}
-  ProjectileSpeed: 100
-  PrimaryFireDelay: 0.15
+  ProjectileSpeed: 80
+  PrimaryFireDelay: 0.18
   SecondaryFireDelay: 0.8
-  TrailCount: 4
+  TrailCount: 6
   CharacterController: {fileID: 0}
 --- !u!1 &1326079549577358
 GameObject:

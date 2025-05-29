@@ -201,8 +201,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4871155855958596}
   - {fileID: 4977263084664720}
@@ -281,10 +281,10 @@ MonoBehaviour:
   MinPrimaryFireAmmo: 1
   MinSecondaryFireAmmo: 10
   MuzzleFlashPoint: {fileID: 2270111834230166405}
-  ProjectileSpeed: 80
+  ProjectileSpeed: 50
   PrimaryFireDelay: 0.1
   SecondaryFireDelay: 3
-  TrailCount: 3
+  TrailCount: 4
   CharacterController: {fileID: 0}
 --- !u!1 &1927369336514790
 GameObject:
