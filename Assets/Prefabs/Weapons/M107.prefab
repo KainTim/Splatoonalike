@@ -361,16 +361,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccb8e6a58d95ac40a1718406533bbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 3415212825969718948, guid: fcd13d81345ae044aa6d7baacbf15749, type: 3}
+  Ammo: {fileID: -7865207027761953270, guid: fcd13d81345ae044aa6d7baacbf15749, type: 3}
   Name: M107
-  Damage: 8
+  Damage: 80
   MinPrimaryFireAmmo: 4
   MinSecondaryFireAmmo: 8
   MuzzleFlashPoint: {fileID: 4613654713888621238}
   ProjectileSpeed: 100
-  PrimaryFireDelay: 0.8
+  PrimaryFireDelay: 0.6
   SecondaryFireDelay: 1.2
-  TrailCount: 10
+  TrailCount: 8
   CharacterController: {fileID: 0}
 --- !u!1 &7040283549577981088
 GameObject:
