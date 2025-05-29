@@ -363,16 +363,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ammo: {fileID: 3415212825969718948, guid: fcd13d81345ae044aa6d7baacbf15749, type: 3}
   Name: M107
-  Damage: 0
-  MaxAmmoCount: 100
-  CurrentAmmo: 100
-  MinPrimaryFireAmmoCount: 1
-  MinSecondaryFireAmmoCount: 2
+  Damage: 8
+  MinPrimaryFireAmmo: 4
+  MinSecondaryFireAmmo: 8
   MuzzleFlashPoint: {fileID: 4613654713888621238}
   ProjectileSpeed: 30
-  Camera: {fileID: 0}
   PrimaryFireDelay: 0.3
   SecondaryFireDelay: 1.2
+  TrailCount: 3
+  CharacterController: {fileID: 0}
 --- !u!1 &7040283549577981088
 GameObject:
   m_ObjectHideFlags: 0

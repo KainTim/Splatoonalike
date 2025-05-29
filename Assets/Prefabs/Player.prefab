@@ -130,6 +130,16 @@ MonoBehaviour:
   Weapons:
   - {fileID: 9075532782831746204, guid: 7359baf27e84aa44cafac3788c8be0f1, type: 3}
   - {fileID: 4500371477923174519, guid: 8b0b86b42def11849a8eba21f4a6a684, type: 3}
+  - {fileID: -5238642371803108203, guid: 221db04445c4eccfd81f54eed095dab1, type: 3}
+  MaxAmmo: 100
+  CurrentAmmo: 0
+  InInkRechargeRate: 10
+  OutInkRechargeRate: 2
+  GroundCheckOrigin: {fileID: 2253864852079759479}
+  CheckRadius: 0.5
+  InkLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &4242762951424748143
 MonoBehaviour:
   m_ObjectHideFlags: 0

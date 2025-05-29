@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using WeaponScripts;
 
 namespace KinematicCharacterController.Examples
 {
@@ -121,6 +122,23 @@ namespace KinematicCharacterController.Examples
     }
 
     private Weapon _selectedWeaponInstance;
+    public float MaxAmmo = 100;
+    public float CurrentAmmo;
+    public float InInkRechargeRate;
+    public float OutInkRechargeRate;
+    public float RechargeRate
+    {
+      get => IsInInk ? InInkRechargeRate : OutInkRechargeRate;
+
+    }
+    
+    public Transform GroundCheckOrigin;
+    public float CheckRadius = 0.2f;
+    public LayerMask InkLayer;
+    public bool IsInInk
+    {
+      get => Physics.CheckSphere(GroundCheckOrigin.position, CheckRadius, InkLayer) && _isCrouching;
+    }
 
     private void Awake()
     {
@@ -130,6 +148,7 @@ namespace KinematicCharacterController.Examples
       // Assign the characterController to the motor
       Motor.CharacterController = this;
       _camera = Camera.main;
+      CurrentAmmo = MaxAmmo;
     }
 
     /// <summary>
@@ -275,7 +294,11 @@ namespace KinematicCharacterController.Examples
       }
 
       _selectedWeaponInstance = Instantiate(SelectedWeapon);
-      SelectedWeapon.Camera = _camera;
+      if (_camera is null)
+      {
+        _camera = Camera.main;
+      }
+      _selectedWeaponInstance.Initialize(_camera, this);
       var weaponTransform = _selectedWeaponInstance.transform;
       weaponTransform.SetParent(WeaponAttachPoint);
       weaponTransform.localPosition = Vector3.zero;
@@ -389,7 +412,7 @@ namespace KinematicCharacterController.Examples
             Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized *
                                       _moveInputVector.magnitude;
-            Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed;
+            Vector3 targetMovementVelocity = reorientedInput * (MaxStableMoveSpeed * (IsInInk?2:1));
 
             // Smooth movement Velocity
             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity,
@@ -401,7 +424,7 @@ namespace KinematicCharacterController.Examples
             // Add move input
             if (_moveInputVector.sqrMagnitude > 0f)
             {
-              Vector3 addedVelocity = _moveInputVector * AirAccelerationSpeed * deltaTime;
+              Vector3 addedVelocity = _moveInputVector * (AirAccelerationSpeed * deltaTime );
 
               Vector3 currentVelocityOnInputsPlane = Vector3.ProjectOnPlane(currentVelocity, Motor.CharacterUp);
 
@@ -554,17 +577,18 @@ namespace KinematicCharacterController.Examples
 
           #region firing
 
-          if (_shouldBePrimaryFiring && _selectedWeaponInstance is not null)
+          if (_shouldBePrimaryFiring && _selectedWeaponInstance is not null && !_isCrouching)
           {
             // The Weapon's PrimaryFire method will now handle its own cooldown and ammo check
             _selectedWeaponInstance.PrimaryFire();
-          }
-
-          // Only attempt to fire if the input is down AND we have a weapon instance
-          if (_shouldBeSecondaryFiring && _selectedWeaponInstance is not null)
+          }else if (_shouldBeSecondaryFiring && _selectedWeaponInstance is not null && !_isCrouching)
           {
             // The Weapon's SecondaryFire method will now handle its own cooldown and ammo check
             _selectedWeaponInstance.SecondaryFire();
+          }
+          else
+          {
+            CurrentAmmo += RechargeRate * Time.deltaTime;
           }
 
           #endregion
