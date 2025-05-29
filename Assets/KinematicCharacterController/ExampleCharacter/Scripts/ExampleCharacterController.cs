@@ -244,7 +244,7 @@ namespace KinematicCharacterController.Examples
             {
               _isCrouching = true;
               Motor.SetCapsuleDimensions(0.5f, CrouchedCapsuleHeight, CrouchedCapsuleHeight * 0.5f);
-              MeshRoot.localScale = new Vector3(1f, 0.5f, 1f);
+              MeshRoot.localScale = new Vector3(1f, 0.1f, 1f);
             }
           }
           else if (inputs.CrouchUp)

@@ -1,6 +1,8 @@
 using System;
+using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace WeaponScripts
 {
@@ -20,12 +22,13 @@ namespace WeaponScripts
     public ExampleCharacterController  CharacterController;
     private float _nextPrimaryFireTime;
     private float _nextSecondaryFireTime;
+    private KinematicCharacterMotor  _characterMotor;
     
     public void Initialize(Camera cam, ExampleCharacterController characterCtrl)
     {
       Camera = cam;
       CharacterController = characterCtrl;
-
+      _characterMotor = characterCtrl.GetComponent<KinematicCharacterMotor>();
       _nextPrimaryFireTime = Time.time + PrimaryFireDelay;
       _nextSecondaryFireTime = Time.time + SecondaryFireDelay;
       Debug.Log($"Weapon {Name} Initialized");
@@ -58,8 +61,16 @@ namespace WeaponScripts
         var component = firedAmmo.GetComponent<Rigidbody>();
         var shootDirection = Camera.transform.forward.normalized + upwardsVector;
         var speed = shootDirection * ((ProjectileSpeed /( ((i / 2) *0.5f) + 1)) * 1.3f);
-        Debug.Log($"{speed}: {i}");
-        component.linearVelocity = speed;
+        if (i > 1)
+        {
+          speed *= (Random.value + 0.5f);
+        }
+        if (i>TrailCount*2-2)
+        {
+          speed = Vector3.zero;
+        }
+        Debug.Log(_characterMotor.Velocity);
+        component.linearVelocity = speed + _characterMotor.Velocity*1.2f;
       }
       //Reparent
       MuzzleFlashPoint.transform.parent = parent;
