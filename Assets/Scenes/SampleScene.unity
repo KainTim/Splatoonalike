@@ -1153,6 +1153,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 898055355036461043, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
     - target: {fileID: 2092502026136044339, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1165,6 +1169,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2764542318182494974, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
     - target: {fileID: 2806812664386521807, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1181,6 +1189,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4765482954488551942, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
     - target: {fileID: 5012525245765383351, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1221,6 +1233,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6131590904547834451, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
+    - target: {fileID: 6727465863560476777, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
+    - target: {fileID: 7128329879362385847, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7fca6bb52d71a8e814ddc31e994b90, type: 2}
     - target: {fileID: 8423069172350130193, guid: 00548f14e29432549afbe4c7a991e3a0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
