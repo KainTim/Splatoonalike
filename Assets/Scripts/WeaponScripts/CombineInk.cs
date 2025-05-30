@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,6 +23,7 @@ namespace WeaponScripts
     private bool HandleInkCollision(Collider other)
     {
       var ink = other.gameObject.GetComponent<CombineInk>();
+      var destroy = transform.parent.gameObject.GetComponent<DelayedDestroy>();
       if (ink is null) return false;
       if (transform.parent.transform.localScale.x < other.transform.parent.transform.localScale.x) return false;
       if (GetInstanceID() < ink.GetInstanceID()) return false;
@@ -31,20 +31,31 @@ namespace WeaponScripts
       var ammo = transform.parent.gameObject.GetComponent<Ammo>();
       var scale = transform.parent.localScale;
       var otherScale = other.transform.parent.localScale;
+      
+      // Cap to MaxSize 
       if (scale.x >= MaxSize || scale.z >= MaxSize) return false;
       if (otherScale.x >= MaxSize || otherScale.z >= MaxSize) return false;
 
       if (ammo.Damage < 1)
       {
+        //Scale directly
         scale.x += CombineScale;
         scale.z += CombineScale;
       }
       else
       {
+        //Scale based on ammo
         scale.x += CombineScale * (ammo.Damage/20f);
         scale.z += CombineScale * (ammo.Damage/20f);
       }
+      //Average the two positions
       transform.parent.position = (other.transform.parent.position+transform.parent.position)/2;
+      if (scale.x>= MaxSize)
+      {
+        destroy.DestroyDelay = destroy.MaxSizeDestroyDelay;
+        destroy.ResetTimer();
+      }
+      
       transform.parent.localScale = scale;
       Destroy(other.gameObject.transform.parent.gameObject);
       return true;
@@ -52,7 +63,7 @@ namespace WeaponScripts
 
     private IEnumerator EnableColliderAfterDelay(float delay)
     {
-      yield return new WaitForSeconds(0.4f);
+      yield return new WaitForSeconds(delay);
       _collider.enabled = true;
     }
   }

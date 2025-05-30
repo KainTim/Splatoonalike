@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a8eb7ccbe50f818b57313274c941ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoCanCollideDelay: 2
+  AmmoCanCollideDelay: 0.4
   CombineScale: 0.6
   MaxSize: 5
 --- !u!1 &1973383718487905658
@@ -232,12 +232,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3415212825969718948}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f0bd277269abea668e1cc00ae87dc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyDelay: 45
+  MaxSizeDestroyDelay: 360
 --- !u!114 &-7865207027761953270
 MonoBehaviour:
   m_ObjectHideFlags: 0

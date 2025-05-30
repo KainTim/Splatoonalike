@@ -18,7 +18,7 @@ namespace WeaponScripts
     {
       var enemy = other.gameObject.GetComponent<Enemy>();
       if (enemy is null) return false;
-      enemy.TakeDamage(Damage);
+      enemy.TakeDamage(Damage, this);
       StartCoroutine(Destroy());
       var particles = GetComponent<ParticleSystem>();
       particles.Play();
