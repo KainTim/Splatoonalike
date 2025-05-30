@@ -49,6 +49,7 @@ namespace WeaponScripts
       }
       //Subtract Fired Ammo
       CharacterController.CurrentAmmo -= MinPrimaryFireAmmo;
+      CharacterController.UpdateAmmoSliders();
       //Position and Rotation
       var parent = MuzzleFlashPoint.transform.parent;
       var worldPos = MuzzleFlashPoint.transform.position;

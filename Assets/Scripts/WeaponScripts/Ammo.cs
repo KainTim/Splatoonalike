@@ -13,7 +13,6 @@ namespace WeaponScripts
       HandleEnemyCollision(other);
     }
 
-
     private bool HandleEnemyCollision(Collider other)
     {
       var enemy = other.gameObject.GetComponent<Enemy>();

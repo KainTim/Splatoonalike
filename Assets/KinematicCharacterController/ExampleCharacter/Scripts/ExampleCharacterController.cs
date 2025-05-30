@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 using WeaponScripts;
 
 namespace KinematicCharacterController.Examples
@@ -124,6 +125,7 @@ namespace KinematicCharacterController.Examples
     private Weapon _selectedWeaponInstance;
     public float MaxAmmo = 100;
     public float CurrentAmmo;
+    public List<Slider> AmmoSliders;
     public float InInkRechargeRate;
     public float OutInkRechargeRate;
     public float RechargeRate
@@ -149,6 +151,15 @@ namespace KinematicCharacterController.Examples
       Motor.CharacterController = this;
       _camera = Camera.main;
       CurrentAmmo = MaxAmmo;
+      UpdateAmmoSliders();
+    }
+
+    public void UpdateAmmoSliders()
+    {
+      AmmoSliders.ForEach(x =>
+      {
+        x.value = CurrentAmmo;
+      });
     }
 
     /// <summary>
@@ -591,7 +602,7 @@ namespace KinematicCharacterController.Examples
             CurrentAmmo += RechargeRate * Time.deltaTime;
             CurrentAmmo = Math.Min(CurrentAmmo,MaxAmmo);
           }
-
+          UpdateAmmoSliders();
           #endregion
 
           break;

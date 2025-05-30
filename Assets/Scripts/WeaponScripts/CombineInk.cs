@@ -23,7 +23,7 @@ namespace WeaponScripts
     private bool HandleInkCollision(Collider other)
     {
       var ink = other.gameObject.GetComponent<CombineInk>();
-      var destroy = transform.parent.gameObject.GetComponent<DelayedDestroy>();
+      var destroy = transform.parent.gameObject.GetComponent<DelayedAction>();
       if (ink is null) return false;
       if (transform.parent.transform.localScale.x < other.transform.parent.transform.localScale.x) return false;
       if (GetInstanceID() < ink.GetInstanceID()) return false;
@@ -52,7 +52,7 @@ namespace WeaponScripts
       transform.parent.position = (other.transform.parent.position+transform.parent.position)/2;
       if (scale.x>= MaxSize)
       {
-        destroy.DestroyDelay = destroy.MaxSizeDestroyDelay;
+        destroy.ActionDelay = DelayedAction.MaxSizeDestroyDelay;
         destroy.ResetTimer();
       }
       
