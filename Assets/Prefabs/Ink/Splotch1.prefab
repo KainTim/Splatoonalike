@@ -66,9 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a8eb7ccbe50f818b57313274c941ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoCanCollideDelay: 0.4
-  CombineScale: 0.6
-  MaxSize: 5
+  AmmoCanCollideDelay: 0.25
+  CombineScale: 0.3
+  MaxSize: 3
+  MaxSizeDestroyDelay: 120
 --- !u!1 &1973383718487905658
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &3544396672195809640
 MonoBehaviour:
   m_ObjectHideFlags: 0

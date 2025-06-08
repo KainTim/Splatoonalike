@@ -115,7 +115,7 @@ namespace KinematicCharacterController.Examples
         catch (Exception)
         {
           if (Weapons.Count <= 0) throw new IndexOutOfRangeException("Weapons are Empty");
-          selectedWeaponIndex = selectedWeaponIndex>=Weapons.Count ? 0 : Weapons.Count-1 ;
+          selectedWeaponIndex = selectedWeaponIndex >= Weapons.Count ? 0 : Weapons.Count - 1;
           return Weapons[selectedWeaponIndex];
         }
       }
@@ -131,9 +131,8 @@ namespace KinematicCharacterController.Examples
     public float RechargeRate
     {
       get => IsInInk ? InInkRechargeRate : OutInkRechargeRate;
-
     }
-    
+
     public Transform GroundCheckOrigin;
     public float CheckRadius = 0.2f;
     public LayerMask InkLayer;
@@ -156,10 +155,7 @@ namespace KinematicCharacterController.Examples
 
     public void UpdateAmmoSliders()
     {
-      AmmoSliders.ForEach(x =>
-      {
-        x.value = CurrentAmmo;
-      });
+      AmmoSliders.ForEach(x => { x.value = CurrentAmmo; });
     }
 
     /// <summary>
@@ -254,6 +250,7 @@ namespace KinematicCharacterController.Examples
             if (!_isCrouching)
             {
               _isCrouching = true;
+              WeaponAttachPoint.GetChild(0).gameObject.SetActive(false);
               Motor.SetCapsuleDimensions(0.5f, CrouchedCapsuleHeight, CrouchedCapsuleHeight * 0.5f);
               MeshRoot.localScale = new Vector3(1f, 0.1f, 1f);
             }
@@ -314,6 +311,10 @@ namespace KinematicCharacterController.Examples
       weaponTransform.SetParent(WeaponAttachPoint);
       weaponTransform.localPosition = Vector3.zero;
       weaponTransform.localRotation = Quaternion.identity;
+      if (_isCrouching)
+      {
+        _selectedWeaponInstance.gameObject.SetActive(false);
+      }
     }
 
     /// <summary>
@@ -423,7 +424,7 @@ namespace KinematicCharacterController.Examples
             Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized *
                                       _moveInputVector.magnitude;
-            Vector3 targetMovementVelocity = reorientedInput * (MaxStableMoveSpeed * (IsInInk?2:1));
+            Vector3 targetMovementVelocity = reorientedInput * (MaxStableMoveSpeed * (IsInInk ? 2 : 1));
 
             // Smooth movement Velocity
             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity,
@@ -435,7 +436,7 @@ namespace KinematicCharacterController.Examples
             // Add move input
             if (_moveInputVector.sqrMagnitude > 0f)
             {
-              Vector3 addedVelocity = _moveInputVector * (AirAccelerationSpeed * deltaTime );
+              Vector3 addedVelocity = _moveInputVector * (AirAccelerationSpeed * deltaTime);
 
               Vector3 currentVelocityOnInputsPlane = Vector3.ProjectOnPlane(currentVelocity, Motor.CharacterUp);
 
@@ -581,6 +582,7 @@ namespace KinematicCharacterController.Examples
             else
             {
               // If no obstructions, uncrouch
+              WeaponAttachPoint.GetChild(0).gameObject.SetActive(true);
               MeshRoot.localScale = new Vector3(1f, 1f, 1f);
               _isCrouching = false;
             }
@@ -592,7 +594,8 @@ namespace KinematicCharacterController.Examples
           {
             // The Weapon's PrimaryFire method will now handle its own cooldown and ammo check
             _selectedWeaponInstance.PrimaryFire();
-          }else if (_shouldBeSecondaryFiring && _selectedWeaponInstance is not null && !_isCrouching)
+          }
+          else if (_shouldBeSecondaryFiring && _selectedWeaponInstance is not null && !_isCrouching)
           {
             // The Weapon's SecondaryFire method will now handle its own cooldown and ammo check
             _selectedWeaponInstance.SecondaryFire();
@@ -600,9 +603,10 @@ namespace KinematicCharacterController.Examples
           else
           {
             CurrentAmmo += RechargeRate * Time.deltaTime;
-            CurrentAmmo = Math.Min(CurrentAmmo,MaxAmmo);
+            CurrentAmmo = Math.Min(CurrentAmmo, MaxAmmo);
           }
           UpdateAmmoSliders();
+
           #endregion
 
           break;

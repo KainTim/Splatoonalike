@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     private float _nextEnemySpawnTime;
     public float EnemySpawnDelay = 5;
     public List<GameObject> Enemies;
     public Collider EnemyBox;
+    public int MaxConcurrentEnemyCount = 5;
     private void Start()
     {
         _nextEnemySpawnTime = Time.time;
@@ -16,8 +17,11 @@ public class GameManager : MonoBehaviour
     {
         if (!(_nextEnemySpawnTime <= Time.time))
             return;
+        if (transform.childCount <= MaxConcurrentEnemyCount) 
+            return;
         _nextEnemySpawnTime = Time.time + EnemySpawnDelay;
-        Instantiate(Enemies[Random.Range(0, Enemies.Count)],GetRandomPointInBounds(EnemyBox.bounds),Quaternion.identity);
+        var enemyInstance=Instantiate(Enemies[Random.Range(0, Enemies.Count)],GetRandomPointInBounds(EnemyBox.bounds),Quaternion.identity);
+        enemyInstance.transform.SetParent(transform);
     }
     private static Vector3 GetRandomPointInBounds(Bounds bounds)
     {

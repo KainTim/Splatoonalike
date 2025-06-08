@@ -9,8 +9,6 @@ public class DelayedAction : MonoBehaviour
   public Action Action;
   private float _startTime;
 
-  public const float MaxSizeDestroyDelay = 360f;
-
   public void Start()
   {
     Action = () => { Destroy(gameObject); };

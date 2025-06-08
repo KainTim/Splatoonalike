@@ -9,6 +9,7 @@ namespace WeaponScripts
     public float CombineScale = 0.4f;
     public float MaxSize = 5;
     private Collider _collider;
+    public float MaxSizeDestroyDelay = 120f;
     private void Awake()
     {
       _collider = GetComponent<Collider>();
@@ -52,7 +53,7 @@ namespace WeaponScripts
       transform.parent.position = (other.transform.parent.position+transform.parent.position)/2;
       if (scale.x>= MaxSize)
       {
-        destroy.ActionDelay = DelayedAction.MaxSizeDestroyDelay;
+        destroy.ActionDelay = MaxSizeDestroyDelay;
         destroy.ResetTimer();
       }
       
