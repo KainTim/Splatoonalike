@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> Enemies;
     public Collider EnemyBox;
     public int MaxConcurrentEnemyCount = 5;
+    public int EnemyRespawnCount = 1;
+    private int _enemySpawnedCount;
     private void Start()
     {
         _nextEnemySpawnTime = Time.time;
@@ -15,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_enemySpawnedCount >=MaxConcurrentEnemyCount*EnemyRespawnCount)
+            return;
         if (!(_nextEnemySpawnTime <= Time.time))
             return;
         if (transform.childCount >= MaxConcurrentEnemyCount) 
@@ -22,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
         _nextEnemySpawnTime = Time.time + EnemySpawnDelay;
         var enemyInstance=Instantiate(Enemies[Random.Range(0, Enemies.Count)],GetRandomPointInBounds(EnemyBox.bounds),Quaternion.identity);
         enemyInstance.transform.SetParent(transform);
+        _enemySpawnedCount++;
     }
     private static Vector3 GetRandomPointInBounds(Bounds bounds)
     {
