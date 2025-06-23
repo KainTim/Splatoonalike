@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!(_nextEnemySpawnTime <= Time.time))
             return;
-        if (transform.childCount <= MaxConcurrentEnemyCount) 
+        if (transform.childCount >= MaxConcurrentEnemyCount) 
             return;
         _nextEnemySpawnTime = Time.time + EnemySpawnDelay;
         var enemyInstance=Instantiate(Enemies[Random.Range(0, Enemies.Count)],GetRandomPointInBounds(EnemyBox.bounds),Quaternion.identity);
